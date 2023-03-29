@@ -1,6 +1,6 @@
 /**
  * @desc 在校经历
- * @author pengdaokuan
+ * @author huangying
  */
 import "./index.less";
 import React from "react";

@@ -8,26 +8,7 @@ import "./index.less";
 
 function Root() {
   const history = useHistory();
-  const appName = useSelector((state: any) => state.globalModel.appName);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log("3s 后修改...");
-
-      dispatch({
-        type: "globalModel/setStore",
-        payload: {
-          key: "appName",
-          values: "My_Resume_changed",
-        },
-      });
-    }, 3000);
-  }, []);
-
-  useEffect(() => {
-    console.log("appName = ", appName);
-  }, [appName]);
 
   const onRouterToLink = (router: TSRouter.Item) => {
     if (isHttpOrHttpsUrl(router.url)) {

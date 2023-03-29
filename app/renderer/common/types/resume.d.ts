@@ -220,7 +220,7 @@ declare namespace TSResume {
      */
     summary: string;
     /**
-     * @description 是否必须
+     * @description 表示这个模块在初始时是否默认追加到“已添加模块”中
      */
     require?: boolean;
   }

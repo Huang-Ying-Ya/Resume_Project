@@ -1,6 +1,6 @@
 /**
  * @desc 技能
- * @author pengdaokuan
+ * @author huangying
  */
 import React from 'react';
 import './index.less';

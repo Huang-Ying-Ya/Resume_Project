@@ -1,14 +1,16 @@
 /**
  * @desc 技能
- * @author pengdaokuan
+ * @author huangying
  */
-import React from 'react';
-import { useSelector } from 'react-redux';
-import './index.less';
+import React from "react";
+import { useSelector } from "react-redux";
+import "./index.less";
 
 function Skill() {
   const skill: string = useSelector((state: any) => state.resumeModel.skill);
-  const skillList: string[] = useSelector((state: any) => state.resumeModel.skillList);
+  const skillList: string[] = useSelector(
+    (state: any) => state.resumeModel.skillList
+  );
 
   return (
     <div styleName="content">

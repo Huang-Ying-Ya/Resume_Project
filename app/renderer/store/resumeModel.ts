@@ -40,9 +40,9 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
     certificateList: [],
     schoolExperience: [
       {
-        beginTime: '2016.09',
-        endTime: '2017.09',
-        post: '文艺部会长',
+        beginTime: '2020.09',
+        endTime: '2021.09',
+        post: '文体部会长',
         department: '校团委学生会',
         content:
           '计划、组织、协调各年级学生组织的文艺和文化娱乐活动｜承办好学生会部的学生文艺晚会。有效地与社团部开展合作项目',
@@ -57,12 +57,12 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         beginTime: '2017.09',
         endTime: '2019.04',
         post: '前端工程师',
-        department: '湖南瞎说大学网络中心',
+        department: '四川某不知名企业',
         content:
-          '担任TickNet工作室前端工程师，与湖南瞎说大学网络中心合作，围绕微信企业号开发或主导多个应用｜任职期间基于微信企业号开发校内闲余市场，采用Vue.js主导开发，并与湖南xxx科技有限公司合作，主导开发该公司官网及后台管理',
+          '我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。',
         parseContent: [
-          '担任TickNet工作室前端工程师，与湖南瞎说大学网络中心合作，围绕微信企业号开发或主导多个应用',
-          '任职期间基于微信企业号开发校内闲余市场，采用Vue.js主导开发，并与湖南xxx科技有限公司合作，主导开发该公司官网及后台管理',
+          '我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。',
+          '我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。我是一块砖，哪里需要哪里搬。',
         ],
       },
     ],
@@ -70,7 +70,7 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
       {
         beginTime: '2021.03',
         endTime: '2021.05',
-        projectName: 'visResumeMook 可视化简历平台',
+        projectName: '简历平台',
         post: '前端工程师',
         content:
           'Electron + React Hooks 打造简历平台，只需输入一次信息，套用多份模版｜通过 jsonfile 方式实现主题换肤，支持导出 PDF 简历文档｜通过 indexDB 方式实现历史简历缓存，通过可视化拖拽形式，自定义组件模版',

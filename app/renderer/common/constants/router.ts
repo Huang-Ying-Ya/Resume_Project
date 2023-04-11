@@ -3,22 +3,38 @@
 
 // 模块路径
 const ROUTER = {
-  root: '/',
+  root: '/root',
   resume: '/resume',
+  register: '/register',
+  login: '/login',
+  personalCentre: '/personalCentre',
+  forgetPassword: '/forgetPassword',
+  myInfo:'/personalCentre/myInfo',
+  myResume:'/personalCentre/myResume',
+  myDraft:'/personalCentre/myDraft',
+  myPhone:'/personalCentre/myPhone',
 };
 export default ROUTER;
 
 export const ROUTER_KEY = {
   root: 'root',
   resume: 'resume',
+  login: 'login',
+  register: 'register',
+  personalCentre: 'personalCentre',
+  forgetPassword: 'forgetPassword',
+  myInfo:'personalCentre/myInfo',
+  myResume:'personalCentre/myResume',
+  myDraft:'personalCentre/myDraft',
+  myPhone:'personalCentre/myPhone',
 };
 
-// 入口模块
+// 入口模块 (TS 定义类型必须为TSRouter.Item)
 export const ROUTER_ENTRY = [
   {
-    url: 'https://github.com/Huang-Ying-Ya/Resume_Project',
-    key: 'intro',
-    text: '介绍',
+    url: ROUTER.login,
+    key: ROUTER_KEY.login,
+    text: '退出登录',
   },
   {
     url: ROUTER.resume,
@@ -26,8 +42,8 @@ export const ROUTER_ENTRY = [
     text: '快速开始',
   },
   {
-    url: 'https://github.com/Huang-Ying-Ya/Resume_Project',
-    key: 'code',
-    text: '源码',
+    url: ROUTER.personalCentre,
+    key: ROUTER_KEY.personalCentre,
+    text: '个人中心',
   },
 ];

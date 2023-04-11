@@ -58,7 +58,7 @@ function List({ index, experienceList, onDelete, onChange }: IListProps) {
       {!experienceList ||
         (!experienceList.length && (
           <div styleName="empty">
-            <div styleName="empty-tips">你还没有条目内容，快添加一条吧～</div>
+            <div styleName="empty-tips">你目前还没有条目内容信息</div>
           </div>
         ))}
     </div>

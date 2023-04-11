@@ -39,7 +39,10 @@ function useUpdateResumeHook() {
  * @description 修改个人信息（base）
  */
 function useUpdatePersonalHook() {
+  // useDispatch：用于创建一个 dispatch 函数，这个函数可以用来向 store 发送 action 来更新 store 中的状态；
+  // useSelector：用于从 Redux store 中选择指定的 state；
   const dispatch = useDispatch();
+  // 定义了一个 base 变量用于存储 Redux store 中 resumeModel 的 base 属性中的值
   const base: TSResume.Base = useSelector((state: any) => state.resumeModel.base);
 
   return <T>(stateKey: string, stateValue: T) => {

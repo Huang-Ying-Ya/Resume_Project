@@ -1,4 +1,4 @@
-// 路由类型约束
+// 路由类型约束(TS特有)
 declare namespace TSRouter {
   export interface Item {
     /**

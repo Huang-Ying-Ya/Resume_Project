@@ -1,6 +1,6 @@
 /**
  * @description 适配器模块
- * @summary 将不同数据适配成 List 组件所需的数据格式
+ * @summary 将不同数据适配成 List 组件所需的数据格式（业务组件中，只需要调用适配器转一下数据结构即可）
  */
 export interface AdapterExperienceType {
   /**

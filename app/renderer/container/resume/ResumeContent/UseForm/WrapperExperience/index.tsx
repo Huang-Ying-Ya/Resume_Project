@@ -56,18 +56,21 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
   }, [currentIndex, experienceList]);
 
   // 4. 删除条目
+  // 点击删除条目
   const onDeleteItem = (index: number) => {
     setDeleteModal({
       show: true,
       deleteIndex: index,
     });
   };
+  // 删除弹窗的取消按钮回调
   const onDeleteCancel = useCallback(() => {
     setDeleteModal({
       show: false,
       deleteIndex: -1,
     });
   }, [currentIndex, deleteModal]);
+  // 删除弹窗的确定按钮回调
   const onDeleteOk = useCallback(() => {
     const newList = onDeleteExperience(deleteModal.deleteIndex, experienceList);
     if (newList.length > 0) setCurrentIndex(0);
@@ -86,8 +89,8 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
       // 5.1 当前正在编辑状态
       if (editModal.status) {
         onToggleEditModal({
-          showByCancel: true,
-          onAfterFn: () => {
+          showByCancel: true, // 取消编辑内容，弹窗显示
+          onAfterFn: () => { // 确定取消，则新增条目
             setCurrentIndex(index);
           },
         });
@@ -100,10 +103,12 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
 
   // 6. 添加条目
   const onAddItem = () => {
+    // 判断是否处于编辑态
     if (editModal.status) {
+      // 修改编辑状态
       onToggleEditModal({
-        showByCancel: true,
-        onAfterFn: () => {
+        showByCancel: true, // 取消编辑内容，弹窗显示
+        onAfterFn: () => { // 确定取消，则新增条目
           const newList = onAddExperience(experienceList);
           if (newList.length > 0) {
             // 定位激活刚添加的这条数据
@@ -137,6 +142,7 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
     [editModal]
   );
 
+  // 点击“保存”时触发
   const onSaveEditValue = useCallback(() => {
     let newList = [...experienceList];
     let item = editModal?.tempSaveItem ? { ...editModal?.tempSaveItem } : { ...currentItem };
@@ -148,7 +154,11 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
     });
   }, [editModal?.tempSaveItem, currentIndex, onToggleEditModal]);
 
+  // 二、定义form组件中修改当前条目数据源的方法
+  // 修改当前条目内容
   const onChangeCurrentItem = useCallback(
+    // 当数据源更新，同步修改整个数组
+    // 临时存储当前编辑的内容数据
     (newItem: AdapterExperienceType) => {
       onToggleEditModal({
         tempSaveItem: { ...newItem },
@@ -158,9 +168,15 @@ function WrapperExperience({ children, dataList, updateDataList }: IProps) {
     },
     [children, onToggleEditModal]
   );
+   
+  // 基于 React 提供的 useMemo Hook 实现： 在组件渲染时，对某个值进行缓存
+  // [children, currentItem, editModal?.status, onChangeCurrentItem] 
+  // 是一个依赖数组，是 useMemo 的第二个参数，它用于确定何时需要重新计算 memoized 值
+  // 当 children、currentItem、editModal 的 status、和 onChangeCurrentItem 发生改变时，useMemo 函数就会重新计算 newForm 数组的值
   const newForm = useMemo(() => {
     return React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
+        // 三、核心：给子组件注入两个属性：当前条目与修改当前条目的方法
         return React.cloneElement(child, {
           isDisable: !editModal?.status,
           currentItem,

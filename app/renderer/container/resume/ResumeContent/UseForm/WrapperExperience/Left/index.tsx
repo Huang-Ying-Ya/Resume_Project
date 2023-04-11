@@ -28,7 +28,7 @@ function Left({ index, experienceList = [], onDelete, onAdd, onChange }: IProps)
       )}
       {experienceList.length === 0 && (
         <div styleName="empty">
-          <div styleName="empty-tips">还没有内容，快添加一下吧～</div>
+          <div styleName="empty-tips">目前还没有内容</div>
           <div styleName="empty-action">
             <MyButton width={112} size="middle" onClick={onAdd}>
               添加条目

@@ -38,7 +38,6 @@ function Form({ isDisable, currentItem, onChangeCurrentItem }: IProps) {
           <MyInput
             onChange={(e) => onChangeValue('post', e.target.value)}
             value={currentItem?.post}
-            placeholder="期间担任什么职位"
             allowClear={!isDisable}
             disabled={isDisable}
           />
@@ -78,7 +77,7 @@ function Form({ isDisable, currentItem, onChangeCurrentItem }: IProps) {
             onChange={(e) => onChangeValue('content', e.target.value)}
             rows={5}
             value={currentItem?.content}
-            placeholder="任职期间主要工作是什么呢？"
+            placeholder="任职期间的主要工作"
             allowClear={!isDisable}
             disabled={isDisable}
           />

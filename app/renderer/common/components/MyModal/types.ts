@@ -4,13 +4,15 @@ interface BtnConfig {
   /**
    * @description 按钮文本
    */
-  text?: string;
+  text?: string; // 带问号表示，选项可以不填，无初始值
   /**
    * @description 是否显示
    */
   isShow?: boolean;
   callback?: () => void;
 }
+
+// 弹窗
 interface IModal {
   /**
    * @description 标题

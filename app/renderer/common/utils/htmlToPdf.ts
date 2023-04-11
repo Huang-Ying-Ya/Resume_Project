@@ -9,6 +9,7 @@ const A4Height = 841.89;
  */
 export function toPrintPdf(resumeName?: string) {
   let name = resumeName || '未命名文件';
+  // 每个模板都需要在根容器组件添加id
   const dom: HTMLElement | any = document.querySelector('#visPdf');
   if (dom) {
     html2canvas(dom, {

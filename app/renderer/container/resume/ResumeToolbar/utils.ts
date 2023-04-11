@@ -8,7 +8,9 @@ export const onAddToolbar = (
   prevToolbarList: TSResume.SliderItem[],
   currentToolbar: TSResume.SliderItem
 ): TSResume.SliderItem[] => {
+  // prevToolbarList 数组中的每个 TSResume.SliderItem 对象中获取 key 属性，然后将这些属性值组成一个新的数组 addKeys
   const addKeys = prevToolbarList.map((s: TSResume.SliderItem) => s.key);
+  // 将 prevToolbarList 数组中的元素复制到一个新数组中，以实现创建一个新的数组副本的效果
   let nextToolbarList = [...Array.from(prevToolbarList)];
   if (!addKeys.includes(currentToolbar.key)) {
     nextToolbarList.push(currentToolbar);

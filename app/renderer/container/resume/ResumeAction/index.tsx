@@ -3,7 +3,7 @@
  */
 import React, { useState } from "react";
 import "./index.less";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import ROUTER from "@common/constants/router";
 import MyButton from "@common/components/MyButton";
 import { toPrintPdf } from "@common/utils/htmlToPdf";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import MyModal from "@common/components/MyModal";
 
 function ResumeAction() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const base: TSResume.Base = useSelector(
     (state: any) => state.resumeModel.base
@@ -21,7 +21,13 @@ function ResumeAction() {
   );
 
   // 返回首页
-  const onBack = () => history.push(ROUTER.root);
+  const onBack = () => navigate(ROUTER.root);
+
+  // 导出pdf
+  const onExport = () =>{
+    setShowModal(true);
+    toPrintPdf(`${base?.username}+${base?.school}+${work?.job}`);
+  }
 
   return (
     <div styleName="actions">
@@ -31,10 +37,11 @@ function ResumeAction() {
       <MyButton
         size="middle"
         className="export-btn"
-        onClick={() => setShowModal(true)}
+        onClick={()=>setShowModal(true)}
       >
         导出PDF
       </MyButton>
+      {/* 弹窗内容 */}
       {showModal && (
         <MyModal.Confirm
           title="确定要打印简历吗？"

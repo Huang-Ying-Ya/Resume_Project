@@ -17,9 +17,11 @@ import WorkExperience from './UseForm/WorkExperience';
 function ResumeContent() {
   const HEADER_ACTION_HEIGHT = 92;
   const height = document.body.clientHeight;
+  // 定义state值
   const [formName, setFormName] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);
 
+  // 监听此事件
   useEffect(() => {
     document.addEventListener(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, onReceive);
     return () => {
@@ -31,7 +33,10 @@ function ResumeContent() {
    */
   const onReceive = (e: any) => {
     Messager.receive(e, (data: any) => {
+      // setShowFormModal 和 setFormName 都是 React 中 useState Hook 的函数，用于更新状态变量的值
+      // 这两个函数会重新渲染组件，以显示新的状态或属性
       setShowFormModal(true);
+      // 这里的form_name:education 或 personal等
       setFormName(data?.form_name);
     });
   };

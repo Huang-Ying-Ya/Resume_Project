@@ -7,6 +7,7 @@ import '../../../styles/template-one.less';
 import { useSelector } from 'react-redux';
 
 function Contact() {
+  // useSelector 从Redux store中提取数据
   const contact: TSResume.Contact = useSelector((state: any) => state.resumeModel.contact);
 
   return (

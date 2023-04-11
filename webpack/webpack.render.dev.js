@@ -3,17 +3,19 @@ const webpackMerge = require('webpack-merge');
 const baseConfig = require('./webpack.base.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// 渲染进程开发环境配置
+
 const devConfig = {
   mode: 'development',
   entry: {
-    // 👇 对应渲染进程的 app.tsx 入口文件
+    // 对应渲染进程的 app.tsx 入口文件
     index: path.resolve(__dirname, '../app/renderer/app.tsx'),
   },
   output: {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, '../dist'),
   },
-  target: 'electron-renderer',
+  target: 'electron-renderer',// 这里的target针对electron渲染进程，最后通过webpack-merge合并导出一份完整配置
   devtool: 'inline-source-map',
   devServer: {
     contentBase: path.join(__dirname, '../dist'),
@@ -26,11 +28,12 @@ const devConfig = {
     rules: [
       {
         test: /\.css$/,
+        exclude: [/[\\/]node_modules[\\/].*antd/],
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
+        exclude: [/[\\/]node_modules[\\/].*antd/],
         use: [
           'style-loader',
           {
@@ -43,13 +46,53 @@ const devConfig = {
           },
           'postcss-loader',
           'less-loader',
+          // {
+          //   loader: 'less-loader',
+          //   options: {
+          //     lessOptions: { 
+          //       modifyVars: {
+          //         'primary-color': '#73afc2',
+          //         'link-color': '#73afc2',
+          //         'border-radius-base': '2px',
+          //       },
+          //       javascriptEnabled: true,
+          //   }},
+          // }
+         
+        ],
+      },
+
+      // 针对 antd@4 相关 css/less 包 设置的打包规则
+      {
+        test: /\.css$/,
+        include: [/[\\/]node_modules[\\/].*antd/],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.less$/,
+        include: [/[\\/]node_modules[\\/].*antd/],
+        use: [
+          'style-loader', 
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: { 
+                modifyVars: {
+                  'primary-color': '#fff',
+                  'link-color': '#73afc2',
+                  'border-radius-base': '2px',
+                },
+                javascriptEnabled: true,
+            }},
+          }
         ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // 👇 以此文件为模版，自动生成 HTML
+      // 以此文件为模版，自动生成 HTML
       template: path.resolve(__dirname, '../app/renderer/index.html'),
       filename: path.resolve(__dirname, '../dist/index.html'),
       chunks: ['index'],

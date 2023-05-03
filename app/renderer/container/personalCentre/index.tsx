@@ -1,26 +1,28 @@
 import { useNavigate, NavLink,Outlet, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-// import { shell } from "electron";
 const { shell } = require("electron");
 import { useSelector, useDispatch } from "react-redux";
 import ROUTER, { ROUTER_ENTRY, ROUTER_KEY } from "@common/constants/router";
-import { isHttpOrHttpsUrl } from "@common/utils/router";
 import "./index.less";
 import MyInfo from "@src/container/myInfo";
 import MyResume from "@src/container/myResume";
 import MyDraft from "@src/container/myDraft";
 import MyPhone from "@src/container/myPhone";
 
-import { FolderOpenOutlined, MailOutlined, SettingOutlined, FolderOutlined} from '@ant-design/icons';
+import { FolderOpenOutlined, MailOutlined, SettingOutlined, FolderOutlined, LockOutlined} from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Layout, Menu, Button, Row, Col} from 'antd';
+import { Layout, Menu, Button, Row, Col, Affix} from 'antd';
 import { Link } from "react-router-dom";
+import { getInfo } from "@src/api";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 function PersonalCentre() {
-  const [destination, setDestination] =useState<string>(ROUTER.myInfo);
+  const [bottom, setBottom] = useState(0);
+  
+  // const [destination, setDestination] =useState<string>(ROUTER.myInfo);
   const navigate = useNavigate();
+
   // 返回首页
   const goRoot = () => {
     navigate(ROUTER.root);
@@ -58,12 +60,13 @@ function PersonalCentre() {
     // getItem(<Link to={ROUTER.myPhone}>绑定手机</Link>, ROUTER.myPhone, <SettingOutlined />),
     getItem('个人信息', ROUTER.myInfo,<MailOutlined />),
     getItem('我的简历', ROUTER.myResume, <FolderOpenOutlined />),
-    getItem('我的草稿',ROUTER.myDraft, <FolderOutlined />),
-    getItem('绑定手机', ROUTER.myPhone, <SettingOutlined />),
+    // getItem('我的草稿',ROUTER.myDraft, <FolderOutlined />),
+    // getItem('修改手机号', ROUTER.myPhone, <SettingOutlined />),
+    getItem('更改密码', ROUTER.myPassword, <LockOutlined />),
   ];
   
   // 第一层的menu的key的集合
-  const rootSubmenuKeys = [ROUTER.myInfo, ROUTER.myResume, ROUTER.myDraft, ROUTER.myPhone];
+  const rootSubmenuKeys = [ROUTER.myInfo, ROUTER.myResume, ROUTER.myPassword];
   
   // 打开的是哪个item
   const [openKeys, setOpenKeys] = useState([ROUTER.myInfo]);
@@ -79,8 +82,8 @@ function PersonalCentre() {
   };
 
   const changeRouter = (e:any) => {
-    console.log('key',e.key);
-    setDestination(e.key);
+    // console.log('key',e.key);
+    // setDestination(e.key);
     navigate(e.key,{replace:true})
     // this.props.to(e.key);
   }
@@ -128,11 +131,13 @@ function PersonalCentre() {
         {/* <Header styleName="site-layout-sub-header-background" style={{ padding: 0 }} /> */}
         <Content style={{ margin: '25px 16px 0' }}>
           <div styleName="site-layout-background" style={{ padding: 25, minHeight: 360 }}>
-            <Outlet/>
+            <Outlet />
           </div>
         </Content>
       </Layout>
-      <Footer style={{ textAlign: 'center' }}>Copyright By Huang Ying</Footer>
+      <Affix offsetBottom={bottom}>
+        <Footer style={{ textAlign: 'center' }}>Copyright By Huang Ying</Footer>
+      </Affix>
     </Layout>  
   );
 }

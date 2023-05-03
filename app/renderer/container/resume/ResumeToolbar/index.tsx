@@ -50,6 +50,7 @@ function ResumeToolbar() {
         type: "templateModel/setStore",
         // payload 字段用来描述这个 action 需要发送的数据，可以是任意类型的数据
         payload: {
+          // resumeToolbarKeys用来让展示简历的部分看是否需要展示
           key: "resumeToolbarKeys",
           values: moduleKeys,
         },

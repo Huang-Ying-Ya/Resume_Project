@@ -13,6 +13,7 @@ const ROUTER = {
   myResume:'/personalCentre/myResume',
   myDraft:'/personalCentre/myDraft',
   myPhone:'/personalCentre/myPhone',
+  myPassword:'/personalCentre/myPassword'
 };
 export default ROUTER;
 
@@ -27,6 +28,7 @@ export const ROUTER_KEY = {
   myResume:'personalCentre/myResume',
   myDraft:'personalCentre/myDraft',
   myPhone:'personalCentre/myPhone',
+  myPassword:'personalCentre/myPassword'
 };
 
 // 入口模块 (TS 定义类型必须为TSRouter.Item)

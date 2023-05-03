@@ -12,43 +12,11 @@ import MyInfo from "@src/container/myInfo";
 import MyResume from "@src/container/myResume";
 import MyDraft from "@src/container/myDraft";
 import MyPhone from "@src/container/myPhone";
+import MyPassword from "@src/container/myPassword"
 
 
 function Router() {
   return (
-    // <HashRouter>
-      //  <Switch>
-      //   <Route path={ROUTER.root} exact>
-      //     <Root />
-      //   </Route>
-      //   <Route path={ROUTER.resume} exact>
-      //     <Resume />
-      //   </Route>
-      //   <Route path={ROUTER.register} exact>
-      //     <Register />
-      //   </Route>
-      //   <Route path={ROUTER.login} exact>
-      //     <Login />
-      //   </Route>
-      //   <Route path={ROUTER.forgetPassword} exact>
-      //     <ForgetPassword />
-      //   </Route>
-      //   <Route path={ROUTER.personalCentre} exact>
-      //     <PersonalCentre />
-      //   </Route>
-      //   <Route path={ROUTER.myInfo} exact>
-      //     <MyInfo />
-      //   </Route>
-      //   <Route path={ROUTER.myResume} exact>
-      //     <MyResume />
-      //   </Route>
-      //   <Route path={ROUTER.myDraft} exact>
-      //     <MyDraft />
-      //   </Route>
-      //   <Route path={ROUTER.myPhone} exact>
-      //     <MyPhone />
-      //   </Route>
-      // </Switch> 
       <HashRouter>
         <Routes>
           <Route element={<Root/>} path={ROUTER.root}></Route>
@@ -62,6 +30,8 @@ function Router() {
           <Route element={<ForgetPassword />} path={ROUTER.forgetPassword}></Route>
           {/* 个人中心路由 */}
           <Route element={<PersonalCentre />} path={ROUTER.personalCentre}>
+            {/* 默认个人中心进入时显示个人信息 */}
+            <Route path={ROUTER.personalCentre} element={<Navigate to={ROUTER.myInfo}/>}></Route>
             {/* 个人中心--个人信息路由 */}
             <Route element={<MyInfo />} path={ROUTER.myInfo}></Route>
             {/* 个人中心--个人简历路由 */}
@@ -70,14 +40,14 @@ function Router() {
             <Route element={<MyDraft />} path={ROUTER.myDraft}></Route>
             {/* 个人中心--个人手机路由 */}
             <Route element={<MyPhone />} path={ROUTER.myPhone}></Route>
+            {/* 个人中心--个人手机路由 */}
+            <Route element={<MyPassword />} path={ROUTER.myPassword}></Route>
           </Route>
 
           {/* 默认路由 */}
           <Route path="*" element={<Navigate to={ROUTER.login}/>}></Route>
         </Routes>
       </HashRouter>
-      // {/* 重定向到首页——进入的地方 */}
-      // {/* <Redirect to={ROUTER.login} /> */}
   );
 }
 export default Router;

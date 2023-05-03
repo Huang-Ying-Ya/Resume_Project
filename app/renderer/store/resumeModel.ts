@@ -2,6 +2,8 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
   namespace: 'resumeModel',
   openSeamlessImmutable: true,
   state: {
+    // 包括个人信息（姓名，籍贯，爱好）
+    // 包括教育信息（学校，专业，学位，学位在校时间）
     base: {
       avatar: '',
       username: 'huangying',
@@ -15,10 +17,12 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         endTime: '2023.06',
       },
     },
+    // 联系方式
     contact: {
       phone: '185****6836',
       email: '****@qq.com',
     },
+    // 工作期望
     work: {
       job: '前端工程师',
       city: '北京 | 杭州',
@@ -27,17 +31,18 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
     hobby: '看剧',
     skill:
       '熟悉 Vue.js｜熟悉 React，了解并使用 Hooks 特性｜了解 MYSQL，了解数据库优化常用方法',
+    // 技能清单
     skillList: [
       '熟悉 Vue.js，了解数据双向绑定原理',
       '熟悉 React，了解并使用 Hooks 特性',
       '了解 MYSQL，了解数据库优化常用方法',
     ],
-    evaluation:
-      '',
+    evaluation:'我最棒了；我最棒了；我最棒了；',
     evaluationList: [
     ],
-    certificate: '',
+    certificate: '我得了一堆奖；我得了一堆奖；我得了一堆奖；',
     certificateList: [],
+    // 在校经历
     schoolExperience: [
       {
         beginTime: '2020.09',
@@ -52,6 +57,7 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         ],
       },
     ],
+    // 工作经历
     workExperience: [
       {
         beginTime: '2017.09',
@@ -66,6 +72,7 @@ const resumeModel: TSRcReduxModel.Props<TSResume.IntactResume> = {
         ],
       },
     ],
+    // 项目经历
     projectExperience: [
       {
         beginTime: '2021.03',

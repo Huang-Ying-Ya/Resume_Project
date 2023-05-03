@@ -4,7 +4,7 @@
 import path from 'path';
 // import { app, BrowserWindow, ipcMain } from 'electron';
 
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
+const { app, BrowserWindow, ipcMain, ipcRenderer, remote } = require('electron');
 
 const ROOT_PATH = path.join(app.getAppPath(), '../');
 
@@ -29,6 +29,7 @@ function createWindow() {
     webPreferences: { // 一个配置参数
       devTools: true,
       nodeIntegration: true, // 注入node模块，才能在渲染进程中使用node
+      // enableRemoteModule: true, //才能使用remote.getCurrentWindow()
     },
   });
 
@@ -37,7 +38,9 @@ ipcMain.on('changeWindowSize',(event:any, arg:any) => {
   // mainWindow.setSize(1200,800);
   event.reply('change', mainWindow.isResizable());
   mainWindow.setSize(1200,800);
+  // remote.getCurrentWindow().setResizable(true);
   mainWindow.setResizable(!mainWindow.isResizable());
+  // mainWindow.setResizable(true);
   event.reply('change', mainWindow.isResizable());
 })
 
@@ -45,7 +48,7 @@ ipcMain.on('changeWindowSizeSmall',(event:any, arg:any) => {
   // mainWindow.setSize(1200,800);
   event.reply('changeSize','');
   mainWindow.setSize(400,550);
-  mainWindow.setResizable(false);
+  mainWindow.setResizable(true);
 })
   
 

@@ -167,6 +167,40 @@ declare namespace TSResume {
   }
 
   /**
+   * @description 技能信息
+   */
+  export interface Skill {
+    /**
+     * @description 技能
+     */
+    skill?: string;
+    skillList?: string[];
+  }
+
+  /**
+   * @description 荣誉证书信息
+   */
+  export interface Certificate {
+    /**
+     * @description 荣誉证书
+     */
+    certificate?: string;
+    certificateList?: string[];
+  }
+
+  /**
+   * @description 个人评价信息
+   */
+  export interface Evaluation {
+    /**
+     * @description 个人评价
+     */
+    evaluation?: string;
+    evaluationList?: string[];
+  }
+
+
+  /**
    * @description 一份完整的简历信息
    */
   export interface IntactResume {

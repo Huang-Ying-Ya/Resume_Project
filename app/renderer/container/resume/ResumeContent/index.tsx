@@ -24,12 +24,14 @@ function ResumeContent() {
   // 监听此事件
   useEffect(() => {
     document.addEventListener(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, onReceive);
+    console.log('formName',formName);
+    
     return () => {
       document.removeEventListener(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, onReceive);
     };
   }, []);
   /**
-   * @description 接收订阅事件的传参
+   * @description 接收订阅事件的传参(控制modal的展示与关闭)
    */
   const onReceive = (e: any) => {
     Messager.receive(e, (data: any) => {

@@ -16,6 +16,7 @@ request.interceptors.request.use((config)=>{
     //     }
     // }
     config.headers['Authorization'] = `Bearer ${Decryption(localStorage.getItem('token')||'')}`;
+    // config.headers['x-csrf-token'] = `Bearer ${Decryption(localStorage.getItem('token')||'')}`;
     return config;
 })
 //拦截响应

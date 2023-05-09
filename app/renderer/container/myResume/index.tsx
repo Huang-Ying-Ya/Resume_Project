@@ -6,9 +6,8 @@ import { toPrintPdf } from "@common/utils/htmlToPdf";
 import "./index.less";
 import { EditOutlined } from '@ant-design/icons';
 import MyModal from "@common/components/MyModal";
-
 // TODO: 这里不能直接引入位置，而要这么写
-import ShowImage from '@assets/outlook.jpg';
+import ShowImage from '@assets/outlookOne.jpg';
 
 
 import { Button, Row, Col, Image, Input, Modal, message} from 'antd';
@@ -21,6 +20,7 @@ interface ResumeItemProps {
   title: string;
   id: number;
   userId: number;
+  resumeModelId: number;
 };
 
 function MyResume() {
@@ -108,8 +108,8 @@ function MyResume() {
   };
 
   // 编辑简历
-  const handleEdit = (id:number) => {
-    const params ={resumeId:id};
+  const handleEdit = (id:number, modelId:number) => {
+    const params ={resumeId:id, resumeModelId:modelId};
     navigate(ROUTER.resume,{state:params})
   }
 
@@ -158,7 +158,7 @@ function MyResume() {
                 </Modal>
               </Col>
               <Col span={4}>
-                <Button type="link" block styleName="resume-button" onClick={() => handleEdit(item.id)}>编辑</Button>
+                <Button type="link" block styleName="resume-button" onClick={() => handleEdit(item.id,item.resumeModelId)}>编辑</Button>
                 {/* <Button type="link" block styleName="resume-button" onClick={() => handleDownload(item.title)}>下载</Button> */}
                 <Button type="link" block styleName="resume-button" onClick={() => handleDelete(item.id)}>删除</Button>
               </Col>

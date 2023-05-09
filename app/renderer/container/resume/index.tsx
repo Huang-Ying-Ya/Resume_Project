@@ -16,6 +16,7 @@ function Resume() {
   const location = useLocation();
   const params = location.state;
   const resumeId = params.resumeId;
+  const resumeModelId = params.resumeModelId;
   // const resumeToolbarKeys: string[] = useSelector(
   //   (state: any) => state.templateModel.resumeToolbarKeys
   // );
@@ -58,10 +59,10 @@ function Resume() {
   return (
     <div styleName="container">
       <div styleName="header">
-        <ResumeAction />
+        <ResumeAction resumeModelId={resumeModelId}/>
       </div>
       <div styleName="content">
-        <ResumeContent />
+        <ResumeContent resumeModelId={resumeModelId}/>
       </div>
       <div styleName="toolbar">
         <ResumeToolbar />

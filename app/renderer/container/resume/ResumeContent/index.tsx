@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createElement } from 'react';
 import * as UseTemplateList from './UseTemplate';
 import MyScrollBox from '@common/components/MyScrollBox';
 import Messager, { MESSAGE_EVENT_NAME_MAPS } from '@common/messager';
@@ -14,17 +14,28 @@ import ProjectExperience from './UseForm/ProjectExperience';
 import SchoolExperience from './UseForm/SchoolExperience';
 import WorkExperience from './UseForm/WorkExperience';
 
-function ResumeContent() {
+interface modelKeyObject {
+  [key: number] : any;
+}
+
+function ResumeContent(props: any) {
+  const { resumeModelId } = props;
   const HEADER_ACTION_HEIGHT = 92;
   const height = document.body.clientHeight;
   // 定义state值
   const [formName, setFormName] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);
+  const [modelKey,setModelKey] = useState<modelKeyObject>({
+    1: UseTemplateList.TemplateOne, 
+    2: UseTemplateList.TemplateTwo,
+  });
 
   // 监听此事件
   useEffect(() => {
     document.addEventListener(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, onReceive);
-    console.log('formName',formName);
+    // console.log('id',resumeModelId);
+    // console.log('123',modelKey[resumeModelId]);
+    
     
     return () => {
       document.removeEventListener(MESSAGE_EVENT_NAME_MAPS.OPEN_FORM_MODAL, onReceive);
@@ -49,7 +60,8 @@ function ResumeContent() {
   };
   return (
     <MyScrollBox maxHeight={height - HEADER_ACTION_HEIGHT}>
-      <UseTemplateList.TemplateOne />
+      {createElement(modelKey[resumeModelId])}
+      {/* <UseTemplateList.TemplateOne /> */}
       {showFormModal && (
         <>
           {formName === RESUME_TOOLBAR_MAPS.certificate && <CertificateForm onClose={onClose} />}

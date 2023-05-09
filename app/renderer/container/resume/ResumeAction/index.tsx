@@ -14,7 +14,8 @@ import { saveTitle, saveContact, saveWorkHope, saveCertificate, saveEvaluation, 
 import { RESUME_TOOLBAR_MAPS } from "@common/constants/resume";
 // import { getToken } from "@src/common/utils/token";
 
-function ResumeAction() {
+function ResumeAction(props: any) {
+  const { resumeModelId } = props;
   const navigate = useNavigate();
   const [title,setTitle] = useState('');
   const [showModal, setShowModal] = useState(false); // 导出简历的弹窗
@@ -75,11 +76,11 @@ function ResumeAction() {
       // console.log('certificate',certificate);
       // console.log('evaluation',evaluation);      
     }
-    console.log('resumeToolbarKeys',resumeToolbarKeys);
+    // console.log('resumeToolbarKeys',resumeToolbarKeys);
   },[isModalOpen,contact,base,work,schoolExperience,workExperience,projectExperience,skill,certificate,evaluation,resumeToolbarKeys]);
 
   // 返回首页
-  const onBack = () => navigate(ROUTER.root);
+  const onBack = () => navigate(ROUTER.resumeModelCentre);
 
   // 保存简历
   const onSave = () => {
@@ -109,8 +110,13 @@ function ResumeAction() {
     try {
       const { data } = await saveTitle({
         title,
+        resumeModelId,
       });
-      // console.log('data',data);
+      if(data.error_code!=0) {
+        message.error(data.message);
+        return;
+      }
+      console.log('data',data);
       const resumeId = data.data.id;
       // getToken(data.error_code);
       // console.log('if true', resumeToolbarKeys, RESUME_TOOLBAR_MAPS.contact, resumeToolbarKeys.includes(RESUME_TOOLBAR_MAPS.contact));

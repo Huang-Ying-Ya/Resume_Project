@@ -4,6 +4,9 @@
 // 模块路径
 const ROUTER = {
   root: '/root',
+  resumeModelCentre:'/resumeModelCentre',
+  resumeModelEasy:'/resumeModelCentre/resumeModelEasy',
+  resumeModelElegant:'/resumeModelCentre/resumeModelElegant',
   resume: '/resume',
   register: '/register',
   login: '/login',
@@ -12,13 +15,15 @@ const ROUTER = {
   myInfo:'/personalCentre/myInfo',
   myResume:'/personalCentre/myResume',
   myDraft:'/personalCentre/myDraft',
-  myPhone:'/personalCentre/myPhone',
   myPassword:'/personalCentre/myPassword'
 };
 export default ROUTER;
 
 export const ROUTER_KEY = {
   root: 'root',
+  resumeModelCentre:'resumeModelCentre/resumeModelCentre',
+  resumeModelEasy:'resumeModelCentre/resumeModelEasy',
+  resumeModelElegant:'resumeModelElegant',
   resume: 'resume',
   login: 'login',
   register: 'register',
@@ -27,7 +32,6 @@ export const ROUTER_KEY = {
   myInfo:'personalCentre/myInfo',
   myResume:'personalCentre/myResume',
   myDraft:'personalCentre/myDraft',
-  myPhone:'personalCentre/myPhone',
   myPassword:'personalCentre/myPassword'
 };
 
@@ -39,8 +43,8 @@ export const ROUTER_ENTRY = [
     text: '退出登录',
   },
   {
-    url: ROUTER.resume,
-    key: ROUTER_KEY.resume,
+    url: ROUTER.resumeModelCentre,
+    key: ROUTER_KEY.resumeModelCentre,
     text: '快速开始',
   },
   {

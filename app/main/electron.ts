@@ -25,7 +25,7 @@ function createWindow() {
     // height: 800,
     width: 400,
     height: 550,
-    resizable: false, // 是否可以缩放
+    // resizable: false, // 是否可以缩放
     webPreferences: { // 一个配置参数
       devTools: true,
       nodeIntegration: true, // 注入node模块，才能在渲染进程中使用node

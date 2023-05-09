@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ROUTER, { ROUTER_ENTRY, ROUTER_KEY } from "@common/constants/router";
 import "./index.less";
+const { ipcRenderer} = require("electron");
 
 import { Button, Form, Checkbox, Space, Input, message} from 'antd';
 import { UserOutlined, MailOutlined, KeyOutlined } from '@ant-design/icons';
 import { textAlign } from "html2canvas/dist/types/css/property-descriptors/text-align";
-import { askCode, changePassword } from "@src/api";
+import { askCode, cancelLogin, changePassword } from "@src/api";
 
 function MyPassword() {
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ const sendMessage = async() => {
   const sendAskCode = async() => {
     const values = form.getFieldsValue()
     const { mobile } =values;
+    console.log('发送验证码');
+    
     try {
       const { data } =await askCode({
         mobile,
@@ -72,8 +75,23 @@ const sendMessage = async() => {
         message.error(data.message);
       } else {
         message.success('密码修改成功');
-        setInterval(() => {
-          navigate(ROUTER.personalCentre);  
+        setInterval(async() => {
+          // navigate(ROUTER.personalCentre);  
+          // 去登录界面切换页面大小
+          try {
+            const data = await cancelLogin();
+            console.log('success',data);
+            
+            if (localStorage.getItem('token')) {
+              localStorage.removeItem('token');
+            }
+            ipcRenderer.send('changeWindowSizeSmall','');
+            ipcRenderer.on('changeSize',(event:any, arg:boolean) => {
+            })
+            navigate(ROUTER.login);
+          } catch (error:any) {
+            message.error(error.message)
+          }
         },3000);
       }
     } catch (error:any) {
@@ -121,9 +139,10 @@ const sendMessage = async() => {
             styleName="input-style"
           />
           <Button style={{ width: 120, height: 30, }} 
-            //onClick={() => setPasswordVisible(prevState => !prevState)}
+            onClick={sendMessage}
+            disabled={isDisable}
           >
-            获取验证码
+            {isDisable? `${countdown}秒后可重发` : '获取验证码'}
           </Button>
         </Space>
       </Form.Item>

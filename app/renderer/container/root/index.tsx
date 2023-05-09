@@ -21,8 +21,8 @@ function Root() {
       if(router.url===ROUTER.login) {
         goRoot();
       }else if(router.url===ROUTER.resume){
-        const params ={resumeId:0};
-      navigate(ROUTER.resume,{state:params})
+        const params ={resumeId:0, resumeModelId:1};
+        navigate(ROUTER.resume,{state:params})
       }else{
         navigate(router.url);
       }
